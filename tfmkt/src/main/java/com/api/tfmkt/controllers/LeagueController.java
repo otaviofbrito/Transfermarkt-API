@@ -21,7 +21,7 @@ public class LeagueController {
         this.leagueService = leagueService;
     }
 
-    @GetMapping("/league/{id}/profile")
+    @GetMapping("/league/{id}/info")
     public ResponseEntity<League> getLeagueById(@PathVariable( value = "id") String id) {
         Optional<League> leagueOptional = leagueService.getLeague(id);
         return leagueOptional.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());

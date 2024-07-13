@@ -22,14 +22,10 @@ public class ClubController {
         this.clubService = clubService;
     }
 
-    @GetMapping("/club/{id}/profile")
-    public ResponseEntity<Optional<Club>> getClubById(@PathVariable BigInteger id) {
+    @GetMapping("/club/{id}/info")
+    public ResponseEntity<Club> getClubById(@PathVariable BigInteger id) {
         Optional<Club> clubOptional = clubService.getClubById(id);
-        if (clubOptional.isPresent()) {
-            return ResponseEntity.ok(clubOptional);
-        }else {
-            return ResponseEntity.notFound().build();
-        }
+        return clubOptional.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());
     }
 
     @GetMapping("/club/search/{name}")

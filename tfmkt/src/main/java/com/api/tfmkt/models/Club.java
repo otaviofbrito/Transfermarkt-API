@@ -1,9 +1,6 @@
 package com.api.tfmkt.models;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.Getter;
 
 import java.math.BigInteger;
@@ -17,8 +14,11 @@ public class Club {
     private String url;
     @Column(name = "club_name")
     private String name;
-    @Column(name = "id_current_league")
-    private String currentLeagueID;
+
+    @ManyToOne
+    @JoinColumn(name = "id_current_league", referencedColumnName = "id")
+    private League currentLeague;
+
     @Column(name = "current_mv")
     private BigInteger currentMarketValue;
 }
