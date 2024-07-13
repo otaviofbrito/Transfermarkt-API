@@ -8,16 +8,17 @@ import lombok.Getter;
 
 import java.math.BigInteger;
 
-@Entity
-@Table(name = "leagues")
 @Getter
-public class League {
+@Entity
+@Table(name = "clubs")
+public class Club {
     @Id
-    private String id;
+    private BigInteger id;
     private String url;
-    @Column(name = "league_name")
+    @Column(name = "club_name")
     private String name;
-    private String country;
+    @Column(name = "id_current_league")
+    private String currentLeagueID;
     @Column(name = "current_mv")
     private BigInteger currentMarketValue;
 }
