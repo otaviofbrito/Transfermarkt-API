@@ -1,5 +1,6 @@
 package com.api.tfmkt.models;
 
+import jakarta.annotation.Nullable;
 import jakarta.persistence.*;
 import lombok.Getter;
 
@@ -10,7 +11,7 @@ import java.math.BigInteger;
 @Table(name = "clubs")
 public class Club {
     @Id
-    private BigInteger id;
+    private Long id;
     private String url;
     @Column(name = "club_name")
     private String name;

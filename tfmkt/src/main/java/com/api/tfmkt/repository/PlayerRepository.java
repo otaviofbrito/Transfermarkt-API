@@ -9,6 +9,6 @@ import org.springframework.stereotype.Repository;
 import java.math.BigInteger;
 
 @Repository
-public interface PlayerRepository extends JpaRepository<Player, BigInteger> {
-    public Page<Player> findByNameContains(Pageable pageable, String name);
+public interface PlayerRepository extends JpaRepository<Player, Long> {
+    Page<Player> findByNameContains(Pageable pageable, String name);
 }

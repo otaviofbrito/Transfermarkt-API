@@ -23,7 +23,7 @@ public class PlayerController {
     }
 
     @GetMapping("/player/{id}/profile")
-    public ResponseEntity<Player> getPlayerById(@PathVariable("id") BigInteger id) {
+    public ResponseEntity<Player> getPlayerById(@PathVariable("id") Long id) {
         Optional<Player> playerOptional = playerService.getPlayerById(id);
         return playerOptional.map(ResponseEntity::ok).orElseGet(()-> ResponseEntity.notFound().build());
 

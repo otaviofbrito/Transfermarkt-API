@@ -11,9 +11,9 @@ import java.util.Optional;
 
 @Repository
 public interface LeagueRepository extends JpaRepository<League, String> {
-    public Optional<League> findByUrl(String url);
+    Optional<League> findByUrl(String url);
 
-    public Page<League> findByNameContaining(Pageable pageable, String name);
+    Page<League> findByNameContaining(Pageable pageable, String name);
 
     //TODO: get list of clubs in league
 }

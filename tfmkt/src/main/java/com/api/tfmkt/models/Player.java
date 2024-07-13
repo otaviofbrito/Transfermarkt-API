@@ -11,7 +11,7 @@ import java.util.Date;
 @Table(name = "players")
 public class Player {
     @Id
-    private BigInteger id;
+    private Long id;
     private String url;
     private String name;
     @Column(name = "full_name")

@@ -20,7 +20,7 @@ public class PlayerService {
         this.playerRepository = playerRepository;
     }
 
-    public Optional<Player> getPlayerById(BigInteger id) {
+    public Optional<Player> getPlayerById(Long id) {
         try{
             return playerRepository.findById(id);
         }catch (Exception e){

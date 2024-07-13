@@ -22,7 +22,7 @@ public class ClubService {
         this.leagueRepository = leagueRepository;
     }
 
-    public Optional<Club> getClubById(BigInteger id) {
+    public Optional<Club> getClubById(Long id) {
         try {
             return clubRepository.findById(id);
         }catch (Exception e){
