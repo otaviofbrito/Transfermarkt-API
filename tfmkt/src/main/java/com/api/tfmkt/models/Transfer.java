@@ -3,6 +3,8 @@ package com.api.tfmkt.models;
 import com.api.tfmkt.enums.TransferTypeEnum;
 import jakarta.persistence.*;
 import lombok.Getter;
+import org.hibernate.annotations.NotFound;
+import org.hibernate.annotations.NotFoundAction;
 
 import java.math.BigInteger;
 
@@ -13,19 +15,25 @@ public class Transfer {
     @EmbeddedId
     private TransferPK id;
 
-    @ManyToOne(fetch = FetchType.EAGER)
+    @NotFound(action = NotFoundAction.IGNORE)
+    @ManyToOne(fetch = FetchType.LAZY)
     @MapsId("playerID")
-    @JoinColumn(name = "player_id", referencedColumnName = "id", insertable = false, updatable = false)
+    @JoinColumn(name = "player_id", referencedColumnName = "id", insertable = false, updatable = false ,
+            foreignKey = @ForeignKey(value = ConstraintMode.NO_CONSTRAINT) )
     private Player player;
 
-    @ManyToOne(fetch = FetchType.EAGER)
+    @NotFound(action = NotFoundAction.IGNORE)
+    @ManyToOne(fetch = FetchType.LAZY)
     @MapsId("leftClubID")
-    @JoinColumn(name = "left_club_id", referencedColumnName = "id", insertable = false, updatable = false)
+    @JoinColumn(name = "left_club_id", referencedColumnName = "id", insertable = false, updatable = false,
+            foreignKey = @ForeignKey(value = ConstraintMode.NO_CONSTRAINT))
     private Club leftClub;
 
-    @ManyToOne(fetch = FetchType.EAGER)
+    @NotFound(action = NotFoundAction.IGNORE)
+    @ManyToOne(fetch = FetchType.LAZY)
     @MapsId("joinedClubID")
-    @JoinColumn(name = "joined_club_id", referencedColumnName = "id", insertable = false, updatable = false)
+    @JoinColumn(name = "joined_club_id", referencedColumnName = "id", insertable = false, updatable = false,
+            foreignKey = @ForeignKey(value = ConstraintMode.NO_CONSTRAINT))
     private Club joinedClub;
 
     @Column(name = "transfer_fee")

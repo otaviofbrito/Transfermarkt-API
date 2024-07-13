@@ -14,6 +14,6 @@ import java.util.List;
 public interface TransferRepository extends JpaRepository<Transfer, TransferPK> {
     List<Transfer> findByPlayerId(Long playerID);
 
-    @Query("SELECT t FROM Transfer t WHERE t.joinedClub.id = :clubID")
+    @Query("SELECT t FROM Transfer t WHERE t.joinedClub.id = :clubID OR t.leftClub.id = :clubID")
     Page<Transfer> findByJoinedClubIdOrLeftClubId(Pageable pageable, Long clubID);
 }
