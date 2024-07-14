@@ -16,24 +16,24 @@ public class Transfer {
     private TransferPK id;
 
     @NotFound(action = NotFoundAction.IGNORE)
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
     @MapsId("playerID")
-    @JoinColumn(name = "player_id", referencedColumnName = "id", insertable = false, updatable = false ,
-            foreignKey = @ForeignKey(value = ConstraintMode.NO_CONSTRAINT) )
+    @JoinColumn(name = "player_id", referencedColumnName = "id", insertable = false, updatable = false,
+            nullable = true, foreignKey = @ForeignKey(value = ConstraintMode.NO_CONSTRAINT))
     private Player player;
 
     @NotFound(action = NotFoundAction.IGNORE)
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
     @MapsId("leftClubID")
     @JoinColumn(name = "left_club_id", referencedColumnName = "id", insertable = false, updatable = false,
-            foreignKey = @ForeignKey(value = ConstraintMode.NO_CONSTRAINT))
+            nullable = true, foreignKey = @ForeignKey(value = ConstraintMode.NO_CONSTRAINT))
     private Club leftClub;
 
     @NotFound(action = NotFoundAction.IGNORE)
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
     @MapsId("joinedClubID")
     @JoinColumn(name = "joined_club_id", referencedColumnName = "id", insertable = false, updatable = false,
-            foreignKey = @ForeignKey(value = ConstraintMode.NO_CONSTRAINT))
+            nullable = true, foreignKey = @ForeignKey(value = ConstraintMode.NO_CONSTRAINT))
     private Club joinedClub;
 
     @Column(name = "transfer_fee")

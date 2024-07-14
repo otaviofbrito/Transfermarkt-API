@@ -28,14 +28,6 @@ public class LeagueService {
         }
     }
 
-    public Optional<League> getLeagueByUrl(String url) {
-        try {
-            return leagueRepository.findByUrl(url);
-        }catch (Exception e){
-        throw new FetchLeagueException("[LeagueService] Failed to fetch League by URL: " + e.getMessage());
-        }
-    }
-
     public Page<League> getLeagueByName(Pageable pageable, String name) {
         try {
             return leagueRepository.findByNameContaining(pageable, name);

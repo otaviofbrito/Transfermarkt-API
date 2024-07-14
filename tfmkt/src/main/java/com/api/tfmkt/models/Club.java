@@ -18,9 +18,9 @@ public class Club {
     private String name;
 
     @NotFound(action = NotFoundAction.IGNORE)
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
     @JoinColumn(name = "id_current_league", referencedColumnName = "id",
-            foreignKey = @ForeignKey(value = ConstraintMode.NO_CONSTRAINT))
+            nullable = true, foreignKey = @ForeignKey(value = ConstraintMode.NO_CONSTRAINT))
     private League currentLeague;
 
     @Column(name = "current_mv")

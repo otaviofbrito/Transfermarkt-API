@@ -32,7 +32,7 @@ public class Player {
     @NotFound(action = NotFoundAction.IGNORE)
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "current_club_id", referencedColumnName = "id",
-            foreignKey = @ForeignKey(value = ConstraintMode.NO_CONSTRAINT))
+            nullable = true, foreignKey = @ForeignKey(value = ConstraintMode.NO_CONSTRAINT))
     private Club currentClub;
 
     private String outfitter;
