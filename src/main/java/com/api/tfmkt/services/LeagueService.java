@@ -1,6 +1,6 @@
 package com.api.tfmkt.services;
 
-import com.api.tfmkt.exception.FetchLeagueException;
+import com.api.tfmkt.exception.LeagueNotFoundException;
 import com.api.tfmkt.models.League;
 import com.api.tfmkt.repository.LeagueRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,7 +8,6 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -21,18 +20,18 @@ public class LeagueService {
     }
 
     public Optional<League> getLeague(String leagueId) {
-        try {
-            return leagueRepository.findById(leagueId);
-        }catch (Exception e){
-            throw new FetchLeagueException("[LeagueService] Failed to fetch League by ID: " + e.getMessage());
+        Optional<League> optionalLeague = leagueRepository.findById(leagueId);
+        if (optionalLeague.isEmpty()){
+            throw new LeagueNotFoundException("League with id " + leagueId + " not found!");
         }
+        return optionalLeague;
     }
 
     public Page<League> getLeagueByName(Pageable pageable, String name) {
-        try {
-            return leagueRepository.findByNameContaining(pageable, name);
-        }catch (Exception e){
-            throw new FetchLeagueException("[LeagueService] Failed to fetch League by name: " + e.getMessage());
+        Page<League> page = leagueRepository.findByNameContaining(pageable, name);
+        if (page.isEmpty()){
+            throw new LeagueNotFoundException("League with name " + name + " not found!");
         }
+        return page;
     }
 }
