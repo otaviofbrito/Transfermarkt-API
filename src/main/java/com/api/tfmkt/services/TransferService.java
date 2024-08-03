@@ -1,6 +1,7 @@
 package com.api.tfmkt.services;
 
 import com.api.tfmkt.exception.FetchTransferException;
+import com.api.tfmkt.exception.NoTransferFoundException;
 import com.api.tfmkt.models.Transfer;
 import com.api.tfmkt.repository.TransferRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,13 +19,12 @@ public class TransferService {
         this.transferRepository = transferRepository;
     }
 
-    public List<Transfer> getTransfersByPlayerID(Long playerID) {
-        try {
-            return transferRepository.findByPlayerId(playerID);
-        }catch (Exception e){
-            throw new FetchTransferException("[TransferService] failed to fetch transfer by player ID: "
-                    + e.getMessage());
-        }
+    public List<Transfer> getTransfersByPlayerID(Long playerID) throws  NoTransferFoundException{
+            List<Transfer> transferList = transferRepository.findByPlayerId(playerID);
+            if(transferList.isEmpty()){
+                throw new NoTransferFoundException("No transfer found for player ID: " + playerID);
+            }
+            return transferList;
     }
 
     public Page<Transfer> getTransfersByClubID(Pageable pageable, Long clubID) {

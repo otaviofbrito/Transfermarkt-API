@@ -1,6 +1,5 @@
 package com.api.tfmkt.models;
 
-import com.api.tfmkt.enums.TransferTypeEnum;
 import jakarta.persistence.*;
 import lombok.Getter;
 import org.hibernate.annotations.NotFound;

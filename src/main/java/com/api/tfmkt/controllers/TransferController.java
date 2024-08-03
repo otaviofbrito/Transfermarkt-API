@@ -1,5 +1,6 @@
 package com.api.tfmkt.controllers;
 
+import com.api.tfmkt.exception.NoTransferFoundException;
 import com.api.tfmkt.models.Transfer;
 import com.api.tfmkt.services.TransferService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,8 +23,8 @@ public class TransferController {
 
     @GetMapping("/player/{id}/transfers")
     public ResponseEntity<List<Transfer>> getPlayerTransfers(@PathVariable Long id) {
-        List<Transfer> list = transferService.getTransfersByPlayerID(id);
-        return ResponseEntity.ok(list);
+            List<Transfer> list = transferService.getTransfersByPlayerID(id);
+            return ResponseEntity.ok(list);
     }
 
     @GetMapping("/club/{id}/transfers")
