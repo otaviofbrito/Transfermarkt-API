@@ -1,7 +1,7 @@
 package com.api.tfmkt.exception;
 
-public class FetchPlayerException extends RuntimeException{
-    public FetchPlayerException(String message) {
+public class PlayerNotFoundException extends RuntimeException{
+    public PlayerNotFoundException(String message) {
         super(message);
     }
 }

@@ -1,7 +1,7 @@
 package com.api.tfmkt.exception;
 
-public class FetchClubLeagueException extends RuntimeException{
-    public FetchClubLeagueException(String message) {
+public class ClubLeagueNotFoundException extends RuntimeException{
+    public ClubLeagueNotFoundException(String message) {
         super(message);
     }
 }
