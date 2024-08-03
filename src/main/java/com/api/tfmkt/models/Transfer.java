@@ -40,5 +40,5 @@ public class Transfer {
     private BigInteger fee;
 
     @Column(name = "transfer_type")
-    private Integer type;
+    private String type;
 }
