@@ -9,19 +9,23 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import java.util.Objects;
 import java.util.Optional;
 
 @Service
 public class ClubService {
-    private final LeagueRepository leagueRepository;
     private ClubRepository clubRepository;
     @Autowired
-    public ClubService(ClubRepository clubRepository, LeagueRepository leagueRepository) {
+    public ClubService(ClubRepository clubRepository) {
         this.clubRepository = clubRepository;
-        this.leagueRepository = leagueRepository;
+
     }
 
     public Optional<Club> getClubById(Long id) {
+        if(Objects.isNull(id)){
+            throw new IllegalArgumentException("Club id cannot be null");
+        }
+
         Optional<Club> clubOptional = clubRepository.findById(id);
         if (clubOptional.isEmpty()){
             throw new ClubNotFoundException("Club with id " + id + " not found!");
@@ -30,6 +34,10 @@ public class ClubService {
     }
 
     public Page<Club> getClubByName(Pageable pageable, String name) {
+        if(Objects.isNull(name)){
+            throw new IllegalArgumentException("Club name cannot be null");
+        }
+
         Page<Club> page = clubRepository.findByNameContains(pageable, name);
         if (page.isEmpty()){
             throw new ClubNotFoundException("Club with name " + name + " not found!");
