@@ -1,7 +1,6 @@
 package com.api.tfmkt.services;
 
 import com.api.tfmkt.exception.LeagueNotFoundException;
-import com.api.tfmkt.models.League;
 import com.api.tfmkt.repository.LeagueRepository;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
