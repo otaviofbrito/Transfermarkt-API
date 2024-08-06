@@ -8,6 +8,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import java.util.Objects;
 import java.util.Optional;
 
 @Service
@@ -20,6 +21,10 @@ public class PlayerService {
     }
 
     public Optional<Player> getPlayerById(Long id) {
+        if (Objects.isNull(id)) {
+            throw new IllegalArgumentException("Id cannot be null");
+        }
+
         Optional<Player> player = playerRepository.findById(id);
         if (player.isEmpty()) {
             throw new PlayerNotFoundException("Player with ID: " + id + " not found!");
@@ -28,6 +33,10 @@ public class PlayerService {
     }
 
     public Page<Player> getPlayerByName(Pageable pageable, String name) {
+        if (Objects.isNull(name)) {
+            throw new IllegalArgumentException("Name cannot be null");
+        }
+
         Page<Player> page = playerRepository.findByNameContains(pageable, name);
         if (page.isEmpty()) {
             throw new PlayerNotFoundException("Player with name: " + name + " not found!");

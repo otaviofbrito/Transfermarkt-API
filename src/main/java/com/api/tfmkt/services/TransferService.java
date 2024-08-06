@@ -9,6 +9,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Objects;
 
 @Service
 public class TransferService {
@@ -20,6 +21,10 @@ public class TransferService {
     }
 
     public List<Transfer> getTransfersByPlayerID(Long playerID) throws TransferNotFoundException {
+        if (Objects.isNull(playerID)) {
+            throw new IllegalArgumentException("Player ID cannot be null");
+        }
+
         List<Transfer> transferList = transferRepository.findByPlayerId(playerID);
         if (transferList.isEmpty()) {
             throw new TransferNotFoundException("No transfer found for player ID: " + playerID);
@@ -28,7 +33,11 @@ public class TransferService {
     }
 
     public Page<Transfer> getTransfersByClubID(Pageable pageable, Long clubID) {
-        Page<Transfer> page =  transferRepository.findByJoinedClubIdOrLeftClubId(pageable, clubID);
+        if (Objects.isNull(clubID)) {
+            throw new IllegalArgumentException("Club ID cannot be null");
+        }
+
+        Page<Transfer> page = transferRepository.findByJoinedClubIdOrLeftClubId(pageable, clubID);
         if (page.isEmpty()) {
             throw new TransferNotFoundException("No transfer found for club ID: " + clubID);
         }
