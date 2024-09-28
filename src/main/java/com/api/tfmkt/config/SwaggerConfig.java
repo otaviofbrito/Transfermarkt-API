@@ -19,7 +19,7 @@ public class SwaggerConfig {
                 .info(new Info()
                         .title("Transfermarkt Scraper API")
                         .version(appVersion)
-                        .description("This API provides endpoints to access data scrapped from Transfermarkt website")
+                        .description("This API provides endpoints to access data scraped from Transfermarkt website")
                         .contact(new Contact()
                                 .name("Transfermarkt Scraper API")
                                 .url("https://github.com/otaviofbrito/Transfermarkt-API")));
