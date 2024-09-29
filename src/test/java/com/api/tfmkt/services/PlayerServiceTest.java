@@ -36,7 +36,7 @@ public class PlayerServiceTest {
     @DisplayName("#getPlayerById > When there is no player with given id > throw PlayerNotFoundException")
     public void getPlayerByIdWhenPlayerWithGivenIdIsNull() {
         Long id = 123L;
-        Mockito.when(playerRepository.findById(123L)).thenReturn(Optional.empty());
+        Mockito.when(playerRepository.findById(123L)).thenReturn(null);
         Assertions.assertThrows(PlayerNotFoundException.class,
                 () -> playerService.getPlayerById(id));
     }
