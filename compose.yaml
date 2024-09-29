@@ -1,10 +1,32 @@
+version: '3.8'
+
 services:
-  mysql:
-    image: 'mysql:latest'
-    environment:
-      - 'MYSQL_DATABASE=mydatabase'
-      - 'MYSQL_PASSWORD=secret'
-      - 'MYSQL_ROOT_PASSWORD=verysecret'
-      - 'MYSQL_USER=myuser'
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: springboot-app
     ports:
-      - '3306'
+      - "8080:8080"
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:mysql://db:3306/tm_db
+      - SPRING_DATASOURCE_USERNAME=user
+      - SPRING_DATASOURCE_PASSWORD=user
+    depends_on:
+      - db
+
+  db:
+    image: mysql:8.0
+    container_name: mysql-db-tm
+    environment:
+      - MYSQL_ROOT_PASSWORD=root
+      - MYSQL_DATABASE=tm_db
+      - MYSQL_USER=user
+      - MYSQL_PASSWORD=user
+    ports:
+      - "3306:3306"
+    volumes:
+      - db-data:/var/lib/mysql
+
+volumes:
+  db-data:
