@@ -1,12 +1,10 @@
-# Transfermarkt-API
+# :soccer: Transfermarkt-API  :leaves:
 
 
 ![Test](https://github.com/otaviofbrito/Transfermarkt-API/actions/workflows/gradle.yml/badge.svg)
 ![Docker Image](https://github.com/otaviofbrito/Transfermarkt-API/actions/workflows/docker-image.yml/badge.svg)
 ![Fly.io](https://github.com/otaviofbrito/Transfermarkt-API/actions/workflows/fly-deploy.yml/badge.svg)
 
-
-# Transfermarkt API
 
 
 ## Table of Contents
@@ -15,7 +13,7 @@
 - [Players](#players)
 - [Transfers](#transfers)
 
----
+
 
 ## Clubs
 
@@ -26,7 +24,7 @@
 | GET         | `/api/club/{id}/leagues`       | Get leagues where the club has played      | `id`: Club ID, `page`: Page number (optional) |
 | GET         | `/api/club/{id}/transfers`     | Get the transfer history of a club         | `id`: Club ID, `page`: Page number (optional) |
 
----
+
 
 ## Leagues
 
@@ -36,7 +34,7 @@
 | GET         | `/api/league/search/{name}`    | Search for leagues by name                    | `name`: League name, `page`: Page number (optional) |
 | GET         | `/api/league/{id}/clubs`       | Get clubs that are part of the league         | `id`: League ID, `page`: Page number (optional) |
 
----
+
 
 ## Players
 
@@ -46,7 +44,7 @@
 | GET         | `/api/player/search/{name}`    | Search for players by name                    | `name`: Player name, `page`: Page number (optional) |
 | GET         | `/api/player/{id}/transfers`   | Get the transfer history of a specific player | `id`: Player ID   |
 
----
+
 
 ## Transfers
 
@@ -55,7 +53,7 @@
 | GET         | `/api/player/{id}/transfers`    | Get the transfer history of a player            | `id`: Player ID   |
 | GET         | `/api/club/{id}/transfers`      | Get the transfer history of a club              | `id`: Club ID, `page`: Page number (optional) |
 
----
+
 
 ## How to Use
 
@@ -83,5 +81,4 @@
 - **200 OK**: Data successfully retrieved.
 - **404 Not Found**: No matching data found for the given criteria.
 
----
 
